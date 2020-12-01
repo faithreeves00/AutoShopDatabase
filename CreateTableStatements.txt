@@ -1,0 +1,91 @@
+DROP TABLE IF EXISTS Customer;
+CREATE TABLE Customer (
+	driverLicNo VARCHAR(8) NOT NULL,
+	firstName VARCHAR(25) NOT NULL,
+	lastName VARCHAR(25) NOT NULL,
+	streetAddress VARCHAR(50),
+	city VARCHAR(25),
+	state CHAR(2),
+	zip INT(5),
+	phone CHAR(12) NOT NULL,
+	PRIMARY KEY (driverLicNo)
+);
+
+DROP TABLE IF EXISTS Mechanic;
+CREATE TABLE Mechanic (
+	employeeID INT(9) NOT NULL AUTO_INCREMENT,
+	firstName VARCHAR(25) NOT NULL,
+	lastName VARCHAR(25) NOT NULL,
+	hourlyRate DECIMAL(6, 2),
+	phone CHAR(12) NOT NULL,
+	specialty VARCHAR(25),
+	PRIMARY KEY (employeeID)
+);
+ALTER TABLE Mechanic AUTO_INCREMENT = 100000000;
+
+DROP TABLE IF EXISTS Car;
+CREATE TABLE Car (
+	licPlateNo VARCHAR(10) NOT NULL,
+	driverLicNo VARCHAR(8),
+	employeeID INT(9),
+	VIN VARCHAR(17) NOT NULL,
+	make VARCHAR(15),
+	model VARCHAR(15),
+	year YEAR(4),
+	color VARCHAR(15),
+	mileage INT(7),
+	PRIMARY KEY (licPlateNo),
+	FOREIGN KEY (driverLicNo)
+		REFERENCES Customer(driverLicNo),
+	FOREIGN KEY (employeeID)
+		REFERENCES Mechanic(employeeID)
+);
+
+DROP TABLE IF EXISTS Job;
+CREATE TABLE Job (
+	jobNo INT(9) NOT NULL AUTO_INCREMENT,
+	licPlateNo VARCHAR(10),
+	employeeID INT(9),
+	description TEXT(250),
+	dateStarted DATE,
+	totalLaborHours DECIMAL(4,2),
+	totalCostOfParts DECIMAL(14,2),
+	dateCompleted DATE,
+	totalCost DECIMAL(14,2),
+	PRIMARY KEY (jobNo),
+	FOREIGN KEY (licPlateNo)
+		REFERENCES Car(licPlateNo),
+	FOREIGN KEY (employeeID)
+		REFERENCES Mechanic(employeeID)
+);
+ALTER TABLE Job AUTO_INCREMENT = 200000000;
+
+DROP TABLE IF EXISTS Estimate;
+CREATE TABLE Estimate (
+	estNo INT(9) NOT NULL AUTO_INCREMENT,
+	licPlateNo VARCHAR(10),
+	employeeID INT(9),
+	dateGiven DATE,
+	timeNeeded DECIMAL(4,2),
+	estCost DECIMAL(10,2),
+	PRIMARY KEY (estNo),
+	FOREIGN KEY (licPlateNo)
+		REFERENCES Car(licPlateNo),
+	FOREIGN KEY (employeeID)
+		REFERENCES Mechanic(employeeID)
+);
+ALTER TABLE Estimate AUTO_INCREMENT = 300000000;
+
+DROP TABLE IF EXISTS Part;
+CREATE TABLE Part (
+	partNo INT(9) NOT NULL AUTO_INCREMENT,
+	jobNo INT(9),
+	partName VARCHAR(20),
+	manufacturer VARCHAR(20),
+	supplier VARCHAR(20),
+	unitCost DECIMAL(8,2),
+	PRIMARY KEY (partNo),
+	FOREIGN KEY (jobNo)
+		REFERENCES Job(jobNo)
+);
+ALTER TABLE Part AUTO_INCREMENT = 400000000;

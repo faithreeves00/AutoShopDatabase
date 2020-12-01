@@ -1,0 +1,86 @@
+INSERT INTO Customer (driverLicNo, firstName, lastName, streetAddress, city, state, zip, phone)
+
+VALUES('TX274927', 'Faith', 'Reeves', '300 John St', 'Quinland', 'TX', 76324, '903-273-8899');
+
+INSERT INTO Customer (driverLicNo, firstName, lastName, streetAddress, city, state, zip, phone)
+
+VALUES('WA493842', 'Hope', 'Schubert', '432 W Pine Ave', 'Seattle', 'WA', 39539, '382-490-4478');
+
+INSERT INTO Customer (driverLicNo, firstName, lastName, streetAddress, city, state, zip, phone)
+ 
+VALUES('CA483724', 'Joy', 'Dully', '900 Lincoln Park', 'Santa Clarita', 'CA', 38593, '473-983-2348');
+
+
+
+
+INSERT INTO Mechanic (firstName, lastName, hourlyRate, phone, specialty)
+
+VALUES('Bob', 'Parr', 25.50, '384-954-3002', 'Engine Repair');
+
+INSERT INTO Mechanic (firstName, lastName, hourlyRate, phone, specialty) 
+
+VALUES('Kathy', 'Kirk', 50.00, '483-957-1223', 'Brakes');
+
+INSERT INTO Mechanic (firstName, lastName, hourlyRate, phone, specialty) 
+
+VALUES('Jan', 'Jetson', 30.75, '943-854-3999', 'Engine Performance');
+
+
+
+
+INSERT INTO Car (licPLateNo, driverLicNo, employeeID, VIN, make, model, year, color, mileage)
+
+VALUES( 'TX12345449', 'TX274927', 100000000, '16482736401857362', 'Honda', 'Accord', 2012, 'red', 50242);
+
+INSERT INTO Car (licPLateNo, driverLicNo, employeeID, VIN, make, model, year, color, mileage) 
+
+VALUES('WA54321784', 'WA493842', 100000001, '23896403864903740', 'Toyota', 'Camry', 2007, 'grey', 300232);
+
+INSERT INTO Car (licPLateNo, driverLicNo, employeeID, VIN, make, model, year, color, mileage) 
+
+VALUES('CA67895501', 'CA483724', 100000002, '21683249323894325', 'Dodge', 'Charger', 2015, 'purple', 88239);
+
+
+
+
+INSERT INTO Estimate (licPlateNo, employeeID, dateGiven, timeNeeded, estCost) 
+
+VALUES('TX12345449', 100000000, '2020-01-23', 3.5, 400.00);
+
+INSERT INTO Estimate (licPlateNo, employeeID, dateGiven, timeNeeded, estCost) 
+
+VALUES('WA54321784', 100000001, '2018-10-11', 8.15, 30.00);
+
+INSERT INTO Estimate (licPlateNo, employeeID, dateGiven, timeNeeded, estCost) 
+
+VALUES('CA67895501', 100000002, '2007-12-25', 10, 245.50);
+
+
+
+
+INSERT INTO Job (licPlateNo, employeeID, description, dateStarted, totalLaborHours, totalCostOfParts, dateCompleted, totalCost)
+
+VALUES('TX12345449', 100000000, 'Repair windshield', CURDATE(), 3, 350.75, NULL, 425.00);
+
+INSERT INTO Job (licPlateNo, employeeID, description, dateStarted, totalLaborHours, totalCostOfParts, dateCompleted, totalCost)
+
+VALUES('WA54321784', 100000001, 'Replace tires', CURDATE(), 2, 500, NULL, 530.25);
+
+INSERT INTO Job (licPlateNo, employeeID, description, dateStarted, totalLaborHours, totalCostOfParts, dateCompleted, totalCost)
+
+VALUES('CA67895501', 100000002, 'Change oil', CURDATE(), '1', '10.00', NULL, 35.50);
+
+
+
+
+INSERT INTO Part (jobNo, partName, manufacturer, supplier, unitCost)
+
+VALUES(200000000, 'windshield', 'Safelite', 'AutoZone', 350.75);
+
+INSERT INTO Part (jobNo, partName, manufacturer, supplier, unitCost) 
+
+VALUES(200000001,  'tires', 'TiresRus', 'Michelin', 100);
+
+INSERT INTO Part (jobNo, partName, manufacturer, supplier, unitCost) 
+
+VALUES(200000002, 'oil', 'Pennzoil', 'Autozone', 10.00);
